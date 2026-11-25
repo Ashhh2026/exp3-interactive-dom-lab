@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive DOM Lab — Ashwarya Agrawal (23BCON1659) | Exp. 3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="exp3.css" />
+</head>
+<body>
+  <div class="exp3" data-theme="light">
+    <!-- Top Student Banner -->
+    <div class="student-banner">
+      <div class="container banner-inner">
+        <span class="mono-tag"><strong>ASHWARYA AGRAWAL</strong> · ROLL NO: <strong>23BCON1659</strong></span>
+        <span class="mono-tag muted-text">WEB DEV USING AI · EXPERIMENT 03 (DOM LAB)</span>
+      </div>
+    </div>
+
+    <header class="lab-header">
+      <div class="container header-flex">
+        <div>
+          <span class="pill-kicker">EXP 03 · VANILLA JAVASCRIPT &amp; DOM APIs</span>
+          <h1 class="lab-title">
+            Interactive <span class="serif-italic">DOM</span> Lab
+          </h1>
+          <p class="lab-subtitle">
+            Built by <strong>Ashwarya Agrawal</strong> (Roll No: <strong>23BCON1659</strong>) — ten self-contained widgets wired with <code>querySelector</code>, <code>addEventListener</code>, <code>IntersectionObserver</code>, and <code>requestAnimationFrame</code>.
+          </p>
+        </div>
+
+        <div class="header-controls">
+          <button type="button" class="btn btn-outline" data-theme-toggle aria-pressed="false">
+            🌙 Switch to dark
+          </button>
+          <button type="button" class="btn btn-primary" data-toast-trigger>
+            🔔 Fire a toast
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container lab-main">
+      <!-- Top Row: Live Status + Counter + Progress Bar -->
+      <section class="grid-3">
+        <!-- 1. Live Clock & Greeting -->
+        <article class="widget-card reveal-item">
+          <div class="widget-head">
+            <span class="mono-kicker">01 // LIVE STATUS</span>
+            <span class="api-badge">setInterval</span>
+          </div>
+          <p class="greeting-line" data-greeting>Hello</p>
+          <div class="clock-display" data-clock>00:00:00 AM</div>
+          <p class="widget-note">Updates every second via <code>setInterval</code> &amp; <code>textContent</code>.</p>
+        </article>
+
+        <!-- 5. Interactive Click Counter -->
+        <article class="widget-card reveal-item">
+          <div class="widget-head">
+            <span class="mono-kicker">02 // CLICK COUNTER</span>
+            <span class="api-badge">addEventListener</span>
+          </div>
+          <div class="counter-value" data-counter-value>0</div>
+          <div class="btn-row">
+            <button type="button" class="btn btn-outline" data-counter-dec aria-label="Decrease count">−1</button>
+            <button type="button" class="btn btn-primary" data-counter-inc aria-label="Increase count">+1</button>
+            <button type="button" class="btn btn-ghost" data-counter-reset>Reset</button>
+          </div>
+        </article>
+
+        <!-- 6. Animated Progress Bar -->
+        <article class="widget-card reveal-item">
+          <div class="widget-head">
+            <span class="mono-kicker">03 // PROGRESS BENCHMARK</span>
+            <span class="api-badge">requestAnimationFrame</span>
+          </div>
+          <div class="progress-meta">
+            <span>Build Completion</span>
+            <strong data-progress-label>0%</strong>
+          </div>
+          <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-progress-bar>
+            <div class="progress-fill" data-progress-fill></div>
+          </div>
+          <div class="btn-row" style="margin-top: 14px;">
+            <button type="button" class="btn btn-primary" data-progress-run>Animate to 100%</button>
+            <button type="button" class="btn btn-outline" data-progress-reset>Reset</button>
+          </div>
+        </article>
+      </section>
+
+      <!-- 3 & 4. Filter, Sort & Live Search -->
+      <section class="widget-card reveal-item">
+        <div class="widget-head">
+          <div>
+            <span class="mono-kicker">04 // FILTER · SORT · LIVE SEARCH</span>
+            <h2 class="widget-title">Project Explorer (<span data-visible-count>6</span> shown)</h2>
+          </div>
+          <span class="api-badge">Event Delegation + input</span>
+        </div>
+
+        <div class="filter-toolbar">
+          <input
+            type="search"
+            class="field-input"
+            placeholder="Search projects by title or tech..."
+            aria-label="Search projects"
+            data-search-input
+          />
+
+          <select class="field-select" aria-label="Sort projects" data-sort-select>
+            <option value="newest">Newest first</option>
+            <option value="oldest">Oldest first</option>
+            <option value="az">Title A → Z</option>
+          </select>
+
+          <div class="chip-group" role="group" aria-label="Filter by category" data-filter-group>
+            <button type="button" class="chip-btn active" data-filter="all">All</button>
+            <button type="button" class="chip-btn" data-filter="web">Web</button>
+            <button type="button" class="chip-btn" data-filter="ai">AI</button>
+            <button type="button" class="chip-btn" data-filter="tools">Tools</button>
+          </div>
+        </div>
+
+        <div class="project-cards" data-project-list>
+          <article class="proj-item" data-category="web" data-year="2026" data-title="SUVIDHA Full-Stack Platform">
+            <div class="proj-top"><span>🚀</span><span class="mono-kicker">2026 · WEB</span></div>
+            <h3>SUVIDHA Full-Stack Platform</h3>
+            <p>React, Node.js, TypeScript, and MongoDB application built by Ashwarya Agrawal (23BCON1659).</p>
+          </article>
+
+          <article class="proj-item" data-category="ai" data-year="2026" data-title="Nebula Anomaly Engine">
+            <div class="proj-top"><span>📊</span><span class="mono-kicker">2026 · AI</span></div>
+            <h3>Nebula Anomaly Engine</h3>
+            <p>Real-time telemetry dashboard with AI-assisted metric monitoring and cohort funnels.</p>
+          </article>
+
+          <article class="proj-item" data-category="tools" data-year="2025" data-title="DOM Inspector Kit">
+            <div class="proj-top"><span>🛠️</span><span class="mono-kicker">2025 · TOOLS</span></div>
+            <h3>DOM Inspector Kit</h3>
+            <p>Lightweight utility for measuring layout shifts, observer triggers, and keyboard focus traps.</p>
+          </article>
+
+          <article class="proj-item" data-category="web" data-year="2025" data-title="Editorial Portfolio Engine">
+            <div class="proj-top"><span>✍️</span><span class="mono-kicker">2025 · WEB</span></div>
+            <h3>Editorial Portfolio Engine</h3>
+            <p>Responsive typographic layout pairing serif headings with monospace technical metadata.</p>
+          </article>
+
+          <article class="proj-item" data-category="ai" data-year="2026" data-title="Campus Helpdesk Assistant">
+            <div class="proj-top"><span>🎓</span><span class="mono-kicker">2026 · AI</span></div>
+            <h3>Campus Helpdesk Assistant</h3>
+            <p>Context-aware Q&amp;A assistant with session memory for student admissions and courses.</p>
+          </article>
+
+          <article class="proj-item" data-category="tools" data-year="2024" data-title="C++ DSA Visualizer">
+            <div class="proj-top"><span>🧩</span><span class="mono-kicker">2024 · TOOLS</span></div>
+            <h3>C++ DSA Visualizer</h3>
+            <p>Interactive step-by-step tree and graph traversal visualizer built for core CS practice.</p>
+          </article>
+        </div>
+        <p class="empty-msg" data-empty-state hidden>No matching projects found. Try clearing your search filter.</p>
+      </section>
+
+      <!-- Bottom Row: Accessible Modal + Accordion + Newsletter Validator -->
+      <section class="grid-3">
+        <!-- 7. Accessible Modal Triggers -->
+        <article class="widget-card reveal-item">
+          <div class="widget-head">
+            <span class="mono-kicker">05 // MODAL DIALOG</span>
+            <span class="api-badge">Escape + Focus Return</span>
+          </div>
+          <h2 class="widget-title">Accessible Modals</h2>
+          <p class="widget-note">Click a button to inspect details. Press <kbd>Esc</kbd> or click backdrop to close.</p>
+          <div class="stack-btns" data-modal-triggers>
+            <button
+              type="button"
+              class="btn btn-outline"
+              data-modal-open
+              data-modal-title="SUVIDHA Architecture"
+              data-modal-body="Full-stack web application built with React, Node.js, TypeScript, and MongoDB by Ashwarya Agrawal (Roll No: 23BCON1659)."
+            >
+              Inspect "SUVIDHA"
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline"
+              data-modal-open
+              data-modal-title="DOM Manipulation Rules"
+              data-modal-body="All widgets query elements strictly via data-* attributes, use event delegation, and clean up timers/observers cleanly."
+            >
+              Inspect "DOM Rules"
+            </button>
+          </div>
+        </article>
+
+        <!-- 8. Accessible Accordion -->
+        <article class="widget-card reveal-item">
+          <div class="widget-head">
+            <span class="mono-kicker">06 // ACCORDION</span>
+            <span class="api-badge">aria-expanded</span>
+          </div>
+          <h2 class="widget-title">Lab FAQ</h2>
+          <div class="accordion-list" data-accordion>
+            <div class="acc-item">
+              <button type="button" class="acc-trigger" aria-expanded="false">
+                <span>Why use data-* attributes?</span>
+                <span aria-hidden="true">+</span>
+              </button>
+              <div class="acc-panel" hidden>
+                Decouples JavaScript behavior from CSS styling classes so visual refactors never break scripts.
+              </div>
+            </div>
+
+            <div class="acc-item">
+              <button type="button" class="acc-trigger" aria-expanded="false">
+                <span>How does event delegation help?</span>
+                <span aria-hidden="true">+</span>
+              </button>
+              <div class="acc-panel" hidden>
+                Attaching one listener on a parent container handles dynamic child buttons efficiently with minimal memory overhead.
+              </div>
+            </div>
+
+            <div class="acc-item">
+              <button type="button" class="acc-trigger" aria-expanded="false">
+                <span>Who built Experiment 3?</span>
+                <span aria-hidden="true">+</span>
+              </button>
+              <div class="acc-panel" hidden>
+                Ashwarya Agrawal (Roll No: 23BCON1659) for Web Development Using AI Lab.
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 9. Newsletter Form with Inline Validation -->
+        <article class="widget-card reveal-item">
+          <div class="widget-head">
+            <span class="mono-kicker">07 // INLINE VALIDATION</span>
+            <span class="api-badge">Constraint + Regex</span>
+          </div>
+          <h2 class="widget-title">Lab Updates Signup</h2>
+          <form class="val-form" data-newsletter-form novalidate>
+            <label class="field-label" for="nlName">Full Name</label>
+            <input id="nlName" type="text" class="field-input" placeholder="Ashwarya Agrawal" data-nl-name />
+            <span class="error-text" data-nl-name-err role="alert"></span>
+
+            <label class="field-label" for="nlEmail">Email Address</label>
+            <input id="nlEmail" type="email" class="field-input" placeholder="ashagrawal2004@gmail.com" data-nl-email />
+            <span class="error-text" data-nl-email-err role="alert"></span>
+
+            <button type="submit" class="btn btn-primary" style="margin-top: 6px;">Subscribe →</button>
+            <p class="success-text" data-nl-status role="status" aria-live="polite"></p>
+          </form>
+        </article>
+      </section>
+    </main>
+
+    <footer class="lab-footer">
+      <div class="container footer-flex">
+        <span><strong>Ashwarya Agrawal</strong> · Roll No: <strong>23BCON1659</strong></span>
+        <span>Experiment 03 — Interactive Web Page with JavaScript &amp; DOM Manipulation</span>
+      </div>
+    </footer>
+
+    <!-- Modal Overlay -->
+    <div class="modal-backdrop" data-modal-backdrop hidden>
+      <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalHeading">
+        <div class="modal-top">
+          <h3 id="modalHeading" data-modal-heading>Modal Title</h3>
+          <button type="button" class="btn btn-ghost" data-modal-close aria-label="Close modal">✕</button>
+        </div>
+        <p data-modal-content class="modal-copy"></p>
+        <div style="text-align: right; margin-top: 16px;">
+          <button type="button" class="btn btn-primary" data-modal-close>Done</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Region -->
+    <div class="toast-region" data-toast-region aria-live="polite"></div>
+  </div>
+
+  <script src="exp3.js"></script>
+</body>
+</html>
